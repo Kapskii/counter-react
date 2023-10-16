@@ -6,14 +6,17 @@ export let Counter = () => {
 
     let [acc, setAcc] = useState(0)
 
-    
+    const num = 8;
 
     let onClickHandler = () => {
-        setAcc(++acc);
+        if (acc < num) {
+            ++acc
+        }
+        setAcc(acc)
     }
 
     let onClickMinusHandler = () => {
-        setAcc(--acc);
+        acc <= 0 ? setAcc(acc) : setAcc(--acc);
     }
 
     let onClickResHandler = () => {
