@@ -1,32 +1,36 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 
 
+type CounterPropsType = {
+    max: number
+    counter: number
+    setCounter: (count: number)=>void
+    start: number
+}
 
-export let Counter = () => {
-
-    let [acc, setAcc] = useState(0)
-
-    const num = 8;
+export const Counter:FC<CounterPropsType> = ({max, counter, setCounter,...otheProps}) => {
+    
 
     let onClickHandler = () => {
-        if (acc < num) {
-            ++acc
+        if (counter < max) {
+            setCounter(counter+1) 
         }
-        setAcc(acc)
     }
 
     let onClickMinusHandler = () => {
-        acc <= 0 ? setAcc(acc) : setAcc(--acc);
+        if (counter > 0) {
+            setCounter(counter - 1) 
+        }
     }
 
     let onClickResHandler = () => {
-        setAcc(0)
+        setCounter(otheProps.start)
     }
 
 
     return (
         <div>
-            <h1>{acc}</h1>
+            <h1>{counter}</h1>
             <div>
                 <button onClick={onClickHandler}>+</button>
                 <button onClick={onClickMinusHandler}>-</button>
