@@ -31,6 +31,7 @@ const onClickHandler = () => {
     props.setCounter(startValue)
     props.setMax(maxValue)
     props.setStart(startValue)
+    
 }
 
     return (
