@@ -36,7 +36,7 @@ export const Counter: FC<CounterPropsType> = ({ max, counter, setCounter, ...oth
             <div className={s.button}>
                 <SuperButton name='+' callBack={onClickPlusHandler} />
                 <SuperButton name='-' callBack={onClickMinusHandler} />
-                <SuperButton name='Reset' callBack={onClickResHandler} />
+                <SuperButton color="secondary" name='Reset' callBack={onClickResHandler} />
             </div>
         </div>
     )

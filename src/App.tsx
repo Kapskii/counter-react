@@ -16,8 +16,6 @@ function App() {
 
   return (
     <div className="App">
-      
-      <Grid container spacing={2} style= { {padding: "15px"} } >
       <Paper elevation={5} style={ {padding: "15px"} }>
       <Counter 
       max={max}
@@ -26,8 +24,6 @@ function App() {
       start={start}
       />
       </Paper>
-      </Grid>
-      <Grid>
       <Paper elevation={5} style={ {padding: "15px"} }>
       <Settings 
       setCounter={setCounter}
@@ -37,8 +33,6 @@ function App() {
       setStart={setStart}
       />
       </Paper>
-      </Grid>
-    
     </div>
 
   );
