@@ -1,4 +1,7 @@
 import React, { ChangeEvent, useState } from "react"
+import { SuperButton} from "./SuperButton"
+import { Input } from "./Input"
+import s from "./Settings.module.css"
 
 type SettingPropsType = {
     setCounter: (count:number)=>void
@@ -14,10 +17,12 @@ export const Settings = (props: SettingPropsType) => {
 
 
     const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) => {  
-        setMaxValue(+e.currentTarget.value)
+            setMaxValue(+e.currentTarget.value)
     }
     const onChangeHandlerStart = (e: ChangeEvent<HTMLInputElement>) => { 
-        setStartValue(+e.currentTarget.value)  
+        // if(startValue < maxValue) {
+            setStartValue(+e.currentTarget.value)  
+        // }   
     }
 
     
@@ -29,14 +34,12 @@ const onClickHandler = () => {
 }
 
     return (
-        <div>
-            <div>
-                <div>max value</div>
-                <input value={maxValue} type="number" onChange={onChangeHandlerMax} />
-                <div>start value</div>
-                <input value={startValue} type="number" onChange={onChangeHandlerStart}/>
+        <div className={s.wrapper}>
+            <div className={s.inputs}>
+                <Input label="max value" value={maxValue} callBack={onChangeHandlerMax}/>
+                <Input label="start value" value={startValue} callBack={onChangeHandlerStart}/>
             </div>
-            <button onClick={onClickHandler}>Set</button>
+            <SuperButton color="secondary" variant="contained" name="Set" callBack={onClickHandler}/>
         </div>
     )
 }

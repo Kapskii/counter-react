@@ -1,25 +1,27 @@
 import { FC, useState } from 'react'
+import { SuperButton } from './SuperButton'
+import s from './Counter.module.css'
 
 
 type CounterPropsType = {
     max: number
     counter: number
-    setCounter: (count: number)=>void
+    setCounter: (count: number) => void
     start: number
 }
 
-export const Counter:FC<CounterPropsType> = ({max, counter, setCounter,...otheProps}) => {
-    
+export const Counter: FC<CounterPropsType> = ({ max, counter, setCounter, ...otheProps }) => {
 
-    let onClickHandler = () => {
+
+    let onClickPlusHandler = () => {
         if (counter < max) {
-            setCounter(counter+1) 
+            setCounter(counter + 1)
         }
     }
 
     let onClickMinusHandler = () => {
-        if (counter > 0) {
-            setCounter(counter - 1) 
+        if (counter > otheProps.start) {
+            setCounter(counter - 1)
         }
     }
 
@@ -29,12 +31,12 @@ export const Counter:FC<CounterPropsType> = ({max, counter, setCounter,...othePr
 
 
     return (
-        <div>
-            <h1>{counter}</h1>
-            <div>
-                <button onClick={onClickHandler}>+</button>
-                <button onClick={onClickMinusHandler}>-</button>
-                <button onClick={onClickResHandler}>Reset</button>
+        <div className={s.count}>
+            <h1 className={s.title}>{counter}</h1>
+            <div className={s.button}>
+                <SuperButton name='+' callBack={onClickPlusHandler} />
+                <SuperButton name='-' callBack={onClickMinusHandler} />
+                <SuperButton name='Reset' callBack={onClickResHandler} />
             </div>
         </div>
     )
