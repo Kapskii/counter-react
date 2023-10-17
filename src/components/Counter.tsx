@@ -29,10 +29,11 @@ export const Counter: FC<CounterPropsType> = ({ max, counter, setCounter, ...oth
         setCounter(otheProps.start)
     }
 
+    const finalyClass = counter === max ? s.titleRed : s.title;
 
     return (
         <div className={s.count}>
-            <h1 className={s.title}>{counter}</h1>
+            <h1 className={finalyClass}>{counter}</h1>
             <div className={s.button}>
                 <SuperButton name='+' callBack={onClickPlusHandler} />
                 <SuperButton name='-' callBack={onClickMinusHandler} />

@@ -16,6 +16,16 @@
     font-size: 100px;
 }
 
+.titleRed {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    font-size: 100px;
+    color: red;
+}
+
 .button {
     display: flex;
     gap: 10px;
