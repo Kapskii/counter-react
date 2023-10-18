@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Counter } from './components/Counter';
 import { Settings } from './components/Settings';
-import { Container, Grid, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 
 
 
@@ -14,24 +13,25 @@ function App() {
   const [start, setStart] = useState(0)
 
 
+
   return (
     <div className="App">
-      <Paper elevation={5} style={ {padding: "15px"} }>
-      <Counter 
-      max={max}
-      counter={counter}
-      setCounter={setCounter}
-      start={start}
-      />
+      <Paper elevation={5} style={{ padding: "15px" }}>
+        <Counter
+          max={max}
+          counter={counter}
+          setCounter={setCounter}
+          start={start}
+        />
       </Paper>
-      <Paper elevation={5} style={ {padding: "15px"} }>
-      <Settings 
-      setCounter={setCounter}
-      setMax={setMax}
-      max={max}
-      counter={counter}
-      setStart={setStart}
-      />
+      <Paper elevation={5} style={{ padding: "15px" }}>
+        <Settings
+          setCounter={setCounter}
+          setMax={setMax}
+          max={max}
+          counter={counter}
+          setStart={setStart}
+        />
       </Paper>
     </div>
 
