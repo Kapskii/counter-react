@@ -1,39 +1,48 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { SuperButton } from './SuperButton'
 import s from './Counter.module.css'
+import { CounterType } from '../app/App'
 
 
 type CounterPropsType = {
-    max: number
-    counter: number
-    setCounter: (count: number) => void
-    start: number
+    counterObj: CounterType
+    setCounter: (counter: CounterType) => void
 }
 
-export const Counter: FC<CounterPropsType> = ({ max, counter, setCounter, ...otheProps }) => {
+export const Counter: FC<CounterPropsType> = ({ counterObj, setCounter }) => {
+    const {currentValue, maxValue, startValue} = counterObj
 
 
     let onClickPlusHandler = () => {
-        if (counter < max) {
-            setCounter(counter + 1)
+        if (currentValue < maxValue) {
+            setCounter({
+                ...counterObj,
+                currentValue: currentValue + 1
+            })
         }
     }
 
     let onClickMinusHandler = () => {
-        if (counter > otheProps.start) {
-            setCounter(counter - 1)
+        if (currentValue > startValue) {
+            setCounter({
+                ...counterObj,
+                currentValue: currentValue - 1
+            })
         }
     }
 
     let onClickResHandler = () => {
-        setCounter(otheProps.start)
+        setCounter({
+            ...counterObj,
+            currentValue: startValue
+        })
     }
 
-    const finalyClass = counter === max ? s.titleRed : s.title;
+    const finalyClass = currentValue === maxValue ? s.titleRed : s.title;
 
     return (
         <div className={s.count}>
-            <h1 className={finalyClass}>{counter}</h1>
+            <h1 className={finalyClass}>{currentValue}</h1>
             <div className={s.button}>
                 <SuperButton name='+' callBack={onClickPlusHandler} />
                 <SuperButton name='-' callBack={onClickMinusHandler} />

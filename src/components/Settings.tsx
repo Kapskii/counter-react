@@ -2,14 +2,13 @@ import React, { ChangeEvent, useEffect, useState } from "react"
 import { SuperButton } from "./SuperButton"
 import { Input } from "./Input"
 import s from "./Settings.module.css"
+import { CounterType } from '../app/App'
 
 
 type SettingPropsType = {
-    setCounter: (count: number) => void
     counter: number
-    setMax: (max: number) => void
     max: number
-    setStart: (start: number) => void
+    setCounter: (counter: CounterType) => void
 }
 
 export const Settings = (props: SettingPropsType) => {
@@ -17,25 +16,10 @@ export const Settings = (props: SettingPropsType) => {
     const [startValue, setStartValue] = useState(props.counter)
     const [error, setError] = useState(false)
 
-
     useEffect(() => {
-        let storageMax = localStorage.getItem('Max')
-        let storageStart = localStorage.getItem('Start')
-        if (storageMax) {
-            props.setMax(JSON.parse(storageMax))
-        }
-        if (storageStart) {
-            setStartValue(JSON.parse(storageStart))
-        }
-    }, [])
-
-
-    useEffect(() => {
-        localStorage.setItem('Max', JSON.stringify(maxValue))
-        localStorage.setItem('Start', JSON.stringify(startValue))
-    }, [maxValue, startValue])
-
-
+        setMaxValue(props.max)
+        setStartValue(props.counter)
+    }, [props.max, props.counter])
 
 
     const onChangeHandlerMax = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +29,7 @@ export const Settings = (props: SettingPropsType) => {
         setStartValue(+e.currentTarget.value)
     }
 
-    const onClicReskHandler = () => {
+    const onClicResetHandler = () => {
         setMaxValue(props.max)
         setStartValue(props.counter)
         setError(false)
@@ -56,9 +40,11 @@ export const Settings = (props: SettingPropsType) => {
         if (maxValue < startValue || maxValue === startValue || startValue < 0) {
             setError(true)
         } else {
-            props.setCounter(startValue)
-            props.setMax(maxValue)
-            props.setStart(startValue)
+            props.setCounter({
+                currentValue: startValue,
+                maxValue: maxValue,
+                startValue: startValue,
+            })
         }
     }
 
@@ -83,7 +69,7 @@ export const Settings = (props: SettingPropsType) => {
             </div>
             <div className={s.buttons}>
                 <SuperButton status={error} color="primary" variant="contained" name="Set" callBack={onClickHandler} />
-                <SuperButton color="secondary" variant="contained" name="Reset" callBack={onClicReskHandler} />
+                <SuperButton color="secondary" variant="contained" name="Reset" callBack={onClicResetHandler} />
             </div>
         </div>
     )
